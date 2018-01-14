@@ -20,6 +20,7 @@ import Terminal from 'spectacle-terminal'
 // Import theme
 import createTheme from 'spectacle/lib/themes/default'
 
+
 // Require CSS
 require('normalize.css')
 
@@ -41,7 +42,7 @@ export default class Presentation extends React.Component {
     return (
       <Deck transition={['zoom', 'slide']} transitionDuration={500} theme={theme}>
         <Slide transition={['zoom']} bgColor="primary">
-          <Heading size={6} caps textColor="secondary">
+          <Heading size={2} caps textColor="secondary">
             Making your terminal work for you
           </Heading>
           <Text margin="10px 0 0" textColor="tertiary" size={1} bold>
@@ -53,7 +54,7 @@ export default class Presentation extends React.Component {
           </Text>
         </Slide>
         <Slide transition={['fade']} bgColor="primary" textColor="tertiary">
-          <Heading size={6} textColor="secondary" caps>
+          <Heading size={3} textColor="secondary" caps>
             What's the problem?
           </Heading>
           <Text>
@@ -70,7 +71,7 @@ export default class Presentation extends React.Component {
           </Text>
         </Slide>
         <Slide transition={['fade']} bgColor="tertiary">
-          <Heading size={4} textColor="primary" caps>
+          <Heading size={3} textColor="primary" caps>
             What's the solution?
           </Heading>
           <Text>You've got options, from easy to adventurous:</Text>
@@ -81,7 +82,7 @@ export default class Presentation extends React.Component {
           </List>
         </Slide>
         <Slide transition={['fade']} bgColor="primary">
-          <Heading textColor="secondary" size={4} caps>
+          <Heading textColor="secondary" size={4}>
             Change your terminal application
           </Heading>
           <Text>Here are some you can check out:</Text>
@@ -94,7 +95,7 @@ export default class Presentation extends React.Component {
           </List>
         </Slide>
         <Slide transition={['fade']}>
-          <Heading size={4}>Change your shell language</Heading>
+          <Heading size={3}>Change your shell language</Heading>
           <Text>
             On macOS and Linux, the default language run by the terminal is called 'bash'. (Windows
             now can run bash too, yay!)
@@ -122,57 +123,71 @@ export default class Presentation extends React.Component {
           </List>
         </Slide>
         <Slide transition={['fade']}>
-          <Heading size={4}>Customize your shell</Heading>
+          <Heading size={3}>Customize your shell</Heading>
           <Text>
-            You can get into the nitty gritty of your shell and customize it to your liking.
+            You can get into the nitty gritty of your shell and customize it to your liking with
+            things like aliases and functions.
           </Text>
-          <Text>Add aliases, functions, etc. to any shell.</Text>
-          <Text>You can add themes, prompts, and plugins to zsh, fish, and others.</Text>
           <List>
-            <ListItem>bash -> edit .bashrc </ListItem>
-            <ListItem>zsh -> edit .zshrc </ListItem>
-            <ListItem>fish -> edit config.fish</ListItem>
+            <ListItem>bash ➡ edit .bashrc </ListItem>
+            <ListItem>zsh ➡ edit .zshrc </ListItem>
+            <ListItem>fish ➡ edit config.fish</ListItem>
           </List>
         </Slide>
         <Slide transition={['fade']}>
-          <Heading size={4}>Aliases and functions</Heading>
+          <Heading size={3}>Aliases</Heading>
           <Text>
             If you find yourself typing in the same thing over and over again, you can use an alias.
           </Text>
-          <Text>You can run common commands faster that way</Text>
           <CodePane
             source={`
-          // .bashrc
+          // .bash_profile
           alias dev='npm run dev'
           alias commit='git commit -a'
           // etc...
           `}
           />
+          <CodePane
+            source={`
+          $ dev
+          // runs 'npm run dev'
+          `}
+          />
         </Slide>
-        <Slide>
-          <Heading size={1} textColor="secondary" />
-          <Heading size={2} textColor="secondary">
-            Heading 2
-          </Heading>
-          <Heading size={3} textColor="secondary">
-            Heading 3
-          </Heading>
-          <Heading size={4} textColor="secondary">
-            Heading 4
-          </Heading>
-          <Heading size={5} textColor="secondary">
-            Heading 5
-          </Heading>
-          <Text size={6} textColor="secondary">
-            Standard text
+        <Slide transition={['fade']}>
+          <Heading size={3}>Functions</Heading>
+          <Text>
+              Allow you to get a little deeper by passing parameters, using conditionals, etc.
           </Text>
+          <CodePane
+            source={`
+          // .bash_profile
+          function commitWithMessage {
+            git commit -m $1
+          }
+          `}
+          />
+          <CodePane
+            source={`
+          $ commitWithMessage Hi Codebar!
+          // runs 'git commit -m Hi Codebar'
+          `}
+          />
         </Slide>
-
-        <Slide transition={['fade']} bgColor="secondary" textColor="primary">
-          <BlockQuote>
-            <Quote>Example Quote</Quote>
-            <Cite>Author</Cite>
-          </BlockQuote>
+        <Slide transition={['fade']}>
+          <Heading size={3}> Themes, Plugins, Prompts</Heading>
+          <Text>Make your terminal experience just the way you like it</Text>
+          <List>
+            <ListItem>Oh My Zsh (for zsh)</ListItem>
+            <ListItem>Fisherman, Tacklebox (for fish)</ListItem>
+          </List>
+        </Slide>
+        <Slide transition={['fade']}>
+          <Heading caps size={3}>Thanks!</Heading>
+          <List>
+            <ListItem>@juancarlito88</ListItem>
+            <ListItem>github.com/giancarlo88</ListItem>
+          </List>
         </Slide>
       </Deck>
     )
